@@ -9,7 +9,7 @@ const PORT = 8080;
 initialiseDB();
 
 // waiting for DB to initialise - quick and hacky
-// setTimeout(() => loadData(), 15000);
+setTimeout(() => loadData(), 15000);
 
 // start server
 app.listen(PORT, () => {

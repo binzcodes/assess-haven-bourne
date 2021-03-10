@@ -4,6 +4,7 @@
   "url": "postgres://postgres:postgres@postgres",
   "database": "test",
   "synchronize": true,
+  "logging": true,
   "entities": [
     "./src/entities/*{.ts,.js}",
     "/dist/src/entities/*{.ts,.js}",

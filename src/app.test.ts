@@ -20,14 +20,14 @@ describe('testing routes', () => {
       const result = await request(app).get('/categories').send();
       expect(result.status).toBe(200);
       expect(result.body).toBeInstanceOf(Array)
-      // expect(result).toEqual(
-      //   expect.arrayContaining([
-      //     expect.objectContaining({
-      //       Id: expect.any(Number),
-      //       Name: expect.any(String),
-      //     })
-      //   ])
-      // )
+      expect(result).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            Id: expect.any(Number),
+            Name: expect.any(String),
+          })
+        ])
+      )
       done()
     });
   })

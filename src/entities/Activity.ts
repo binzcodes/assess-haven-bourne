@@ -28,20 +28,20 @@ export class Activity extends BaseEntity {
 
   @ManyToOne(type => Category, category => category.Activities, {
     eager: true,
-    cascade: ['insert', 'update'],
+    cascade: true,
   })
   Category!: Category;
 
   @ManyToMany(type => Location, location => location.Activities, {
     eager: true,
-    cascade: ['insert', 'update'],
+    cascade: true,
   })
   @JoinTable()
   Locations?: Location[];
 
   @OneToMany(type => TimeSlot, timeslot => timeslot.Activity, {
     // eager: true,
-    cascade: ['insert', 'update'],
+    // cascade: ['insert', 'update'],
   })
   TimeSlots?: TimeSlot[];
 

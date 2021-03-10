@@ -24,4 +24,3 @@ export const stream = {
     logger.info(message);
   },
 };
-

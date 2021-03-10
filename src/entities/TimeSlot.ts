@@ -29,14 +29,14 @@ export class TimeSlot extends BaseEntity {
   Deleted!: boolean;
 
   @ManyToOne(type => Location, location => location.TimeSlots, {
-    cascade: ['insert', 'update'],
+    // cascade: true,
   })
-  Location!: Location;
+  Location?: Location;
 
   @ManyToOne(type => Activity, activity => activity.TimeSlots, {
-    cascade: ['insert', 'update'],
+    // cascade: true,
   })
-  Activity!: Activity;
+  Activity?: Activity;
 
   @CreateDateColumn()
   CreatedAt!: Date;

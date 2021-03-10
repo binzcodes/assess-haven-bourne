@@ -1,14 +1,17 @@
 import {Activity, TimeSlot, Category, Location} from './entities';
-
-import {Connection, createConnection, getConnection, getConnectionManager, getRepository} from 'typeorm';
+import {
+  createConnection,
+  getConnection,
+  getRepository,
+} from 'typeorm';
 import 'reflect-metadata';
-import {logger} from "./logger";
+import {logger} from './logger';
 
 export const connection = {
   async connect() {
-    logger.debug('estabilishing pg connection')
+    logger.debug('estabilishing pg connection');
     await createConnection();
-    logger.debug('pg connection established')
+    logger.debug('pg connection established');
   },
 
   async close() {
@@ -25,56 +28,6 @@ export const connection = {
     });
   },
 };
-
-
-// const connectionManager = getConnectionManager()
-
-// export const connection = connectionManager.create({
-//   name: 'default',
-//   type: 'postgres',
-//     url: 'postgres://postgres:postgres@postgres',
-//     database: 'test',
-//     synchronize: true,
-//     // logging: true,
-//     entities: [
-//         Activity,
-//         Location,
-//         TimeSlot,
-//         Category,
-//     ],
-//     cache: {
-//         duration: 30 * 1000, // 30s cache for demo, in prod 1s for realtime
-//         type: "redis",
-//         options: {
-//             host: "redis",
-//             port: 6379
-//         }
-//     }
-// })
-
-// export const connection = createConnection({
-//   name: 'default',
-//   type: 'postgres',
-//   url: 'postgres://postgres:postgres@postgres',
-//   database: 'test',
-//   synchronize: true,
-//   // logging: true,
-//   entities: [
-//     Activity,
-//     Location,
-//     TimeSlot,
-//     Category,
-//   ],
-//   cache: {
-//     duration: 30 * 1000, // 30s cache for demo, in prod 1s for realtime
-//     type: "redis",
-//     options: {
-//       host: "redis",
-//       port: 6379
-//     }
-//   }
-// })
-
 
 export async function initialiseDB(): Promise<void> {
   // await connection

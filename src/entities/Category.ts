@@ -18,7 +18,7 @@ export class Category extends BaseEntity {
   Name!: string;
 
   @OneToMany(type => Activity, activity => activity.Category, {
-    cascade: ['insert', 'update'],
+    // cascade: true,
   })
   Activities?: Activity[];
 

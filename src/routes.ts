@@ -1,11 +1,16 @@
 import {NextFunction, Request, Response, Router} from 'express';
-import {initialiseDB, readActivities, readActivity, readCategories, readTimeslotsByActivity} from './db';
+import {
+  readActivities,
+  readActivity,
+  readCategories,
+  readTimeslotsByActivity,
+} from './db';
 
 const router = Router();
 
 router.get('/ping', (req, res) => {
-  res.json({message: 'pong'})
-})
+  res.json({message: 'pong'});
+});
 
 router.get('/categories', async (req: Request, res: Response) => {
   const categories = await readCategories();
@@ -32,7 +37,7 @@ router.use(
 
 router.get('/activity/:id', async (req: Request, res: Response) => {
   const {id} = req.params;
-  const activity = await readActivity(Number(id))
+  const activity = await readActivity(Number(id));
   if (!activity) {
     return res.status(404).end();
   }

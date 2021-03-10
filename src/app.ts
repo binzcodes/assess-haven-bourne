@@ -1,14 +1,14 @@
 import express, {Application} from 'express';
-import cors from 'cors'
+import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import errorHandler from './errorHandler';
 import routes from './routes';
-import {logger} from "./logger";
+import {logger} from './logger';
 
 const app: Application = express();
 // app.use(express.json());
-app.use(cors())
+app.use(cors());
 
 // // Show routes called in console during development
 if (process.env.NODE_ENV === 'development') {
@@ -19,7 +19,7 @@ if (process.env.NODE_ENV === 'development') {
 // // Security
 if (process.env.NODE_ENV === 'production') {
   // @ts-ignore
-  app.use(morgan('combined', { stream: logger.stream} ));
+  app.use(morgan('combined', {stream: logger.stream}));
   app.use(helmet());
 }
 

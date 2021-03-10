@@ -36,7 +36,7 @@ test('readActivitity', async () => {
   // expect.assertions(2);
   const activity = await readActivity(6);
   expect(activity).toBeInstanceOf(Object);
-  expect(activity.Locations).toBeInstanceOf(Array);
+  expect(activity!.Locations).toBeInstanceOf(Array);
   expect(activity).toEqual(
     expect.objectContaining({
       Id: expect(6)

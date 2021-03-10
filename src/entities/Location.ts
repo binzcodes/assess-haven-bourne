@@ -29,13 +29,13 @@ export class Location extends BaseEntity {
   Deleted!: boolean;
 
   @ManyToMany(type => Activity, activity => activity.Locations, {
-    cascade: ['insert', 'update'],
+    // cascade: true,
   })
   Activities?: Activity[];
 
   @OneToMany(type => TimeSlot, timeslot => timeslot.Location, {
     eager: true,
-    cascade: ['insert', 'update'],
+    cascade: true,
   })
   TimeSlots?: TimeSlot[];
 
