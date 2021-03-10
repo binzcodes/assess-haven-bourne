@@ -1,0 +1,29 @@
+version: '3'
+services:
+  app:
+    build: .
+    command: sh -c "npm i && npm run compile && npm run start"
+    restart: always
+    depends_on:
+      - redis
+      - postgres
+    ports:
+    - 8080:8080
+#    volumes:
+#    - .:/user/src/app
+  redis:
+    container_name: redis-cache
+    image: redis
+    restart: always
+    ports:
+      - 6379:6379
+  postgres:
+    container_name: pg-database
+    image: library/postgres:13-alpine
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_HOST_AUTH_METHOD: trust

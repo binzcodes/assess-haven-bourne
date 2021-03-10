@@ -1,0 +1,23 @@
+{
+  "name": "default",
+  "type": "postgres",
+  "url": "postgres://postgres:postgres@postgres",
+  "database": "test",
+  "synchronize": true,
+  "entities": [
+    "./src/entities/*{.ts,.js}",
+    "/dist/src/entities/*{.ts,.js}",
+    "dist/src/entities/*{.ts,.js}",
+    "/src/entities/*{.ts,.js}",
+    "src/entities/*{.ts,.js}",
+    "./**/entities/*{.ts,.js}"
+  ],
+  "cache": {
+    "duration": 30000,
+    "type": "redis",
+    "options": {
+      "host": "redis",
+      "port": 6379
+    }
+  }
+}
