@@ -30,6 +30,34 @@ test('readActivities', async () => {
   const activities = await readActivities();
   expect(activities).toBeInstanceOf(Array);
   expect([activities]).toBeInstanceOf(Object);
+  expect(activities).toEqual(
+    expect.arrayContaining([
+      expect.objectContaining({
+        Id: expect.any(Number),
+        Name: expect.any(String),
+        Duration: expect.any(Number),
+        Category: expect.objectContaining({
+          Id: expect.any(Number),
+          Name: expect.any(String),
+        }),
+        Locations: expect.arrayContaining([
+          expect.objectContaining({
+            Id: expect.any(Number),
+            Name: expect.any(String),
+            Capacity: expect.any(Number),
+            Tags: expect.any(Number),
+            // Deleted: expect(false),
+            TimeSlots: expect.arrayContaining([
+              expect.objectContaining({
+                Capacity: expect.any(Number),
+                RemainingCapacity: expect.any(Number)
+              })
+            ])
+          })
+        ])
+      })
+    ])
+  )
 });
 
 test('readActivitity', async () => {
@@ -39,7 +67,29 @@ test('readActivitity', async () => {
   expect(activity!.Locations).toBeInstanceOf(Array);
   expect(activity).toEqual(
     expect.objectContaining({
-      Id: expect(6)
+      Id: expect.any(Number),
+      Name: expect.any(String),
+      Duration: expect.any(Number),
+      Category: expect.objectContaining({
+        Id: expect.any(Number),
+        Name: expect.any(String),
+      }),
+      Locations: expect.arrayContaining([
+        expect.objectContaining({
+          Id: expect.any(Number),
+          Name: expect.any(String),
+          Capacity: expect.any(Number),
+          Tags: expect.any(Number),
+          // Deleted: expect(false),
+          // Activities: expect.not,
+          TimeSlots: expect.arrayContaining([
+            expect.objectContaining({
+              Capacity: expect.any(Number),
+              RemainingCapacity: expect.any(Number)
+            })
+          ])
+        })
+      ])
     })
   );
 });
