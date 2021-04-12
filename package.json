@@ -11,7 +11,7 @@
   "keywords": [],
   "scripts": {
     "start": "node dist/src/index.js",
-    "dev": "nodemon",
+    "dev": "nodemon --delay 2.5",
     "lint": "gts lint",
     "clean": "gts clean",
     "compile": "tsc",
@@ -37,9 +37,11 @@
     "typescript": "^4.0.3"
   },
   "dependencies": {
+    "class-validator": "^0.13.1",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "helmet": "^4.4.1",
+    "http-status": "^1.5.0",
     "morgan": "^1.10.0",
     "pg": "^8.5.1",
     "redis": "^3.0.2",

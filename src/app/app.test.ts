@@ -1,4 +1,4 @@
-import app from './app';
+import app from '.';
 import request from 'supertest';
 
 it('Get the ping endpoint', async done => {

@@ -1,19 +1,23 @@
 import {logger} from './logger';
 import app from './app';
 
-import {initialiseDB} from './db';
+import {initialise} from './db';
 
 import {loadData} from './load';
+
 const PORT = 8080;
 
-initialiseDB();
+(async () => {
+  await initialise();
 
-// waiting for DB to initialise - quick and hacky
-setTimeout(() => loadData(), 15000);
+  // hacky - wait for DB to initialise
+  // setTimeout(() => loadData(), 15000);
+  // await loadData();
 
-// start server
-app.listen(PORT, () => {
-  logger.info(`listening at http://localhost:${PORT}`);
-});
+  // start server
+  app.listen(PORT, () => {
+    logger.info(`listening at http://localhost:${PORT}`);
+  });
+})();
 
 export default app;

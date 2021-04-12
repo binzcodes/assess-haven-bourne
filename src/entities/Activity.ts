@@ -10,40 +10,60 @@ import {
   BaseEntity,
   JoinTable,
 } from 'typeorm';
-
-import {Location} from './Location';
-import {Category} from './Category';
-import {TimeSlot} from './TimeSlot';
+import {
+  IsInt,
+  Length,
+  IsInstance,
+  IsArray,
+  ValidateNested,
+  IsNotEmptyObject,
+  IsNotEmpty,
+} from 'class-validator';
+import {Location, Category, TimeSlot} from './';
 
 @Entity()
 export class Activity extends BaseEntity {
   @PrimaryColumn()
+  @IsInt()
+  @IsNotEmpty()
   Id!: number;
 
   @Column()
+  @Length(1, 50)
+  @IsNotEmpty()
   Name!: string;
 
   @Column()
+  @IsInt()
+  @IsNotEmpty()
   Duration!: number;
 
-  @ManyToOne(type => Category, category => category.Activities, {
+  @ManyToOne(() => Category, category => category.Activities, {
     eager: true,
     cascade: true,
   })
+  @IsNotEmptyObject()
+  @ValidateNested()
+  @IsInstance(Category)
+  @IsNotEmpty()
   Category!: Category;
 
-  @ManyToMany(type => Location, location => location.Activities, {
+  @ManyToMany(() => Location, location => location.Activities, {
     eager: true,
     cascade: true,
   })
   @JoinTable()
+  @IsArray()
+  @ValidateNested({each: true})
   Locations?: Location[];
 
-  @OneToMany(type => TimeSlot, timeslot => timeslot.Activity, {
+  @OneToMany(() => TimeSlot, timeslot => timeslot.Activity, {
     // eager: true,
     // cascade: ['insert', 'update'],
   })
-  TimeSlots?: TimeSlot[];
+  @IsArray()
+  @ValidateNested({each: true})
+  TimeSlots?: Set<TimeSlot>;
 
   @CreateDateColumn()
   CreatedAt!: Date;
