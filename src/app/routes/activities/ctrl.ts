@@ -1,5 +1,4 @@
 import {NextFunction, Request, Response} from 'express';
-import { nextTick } from 'node:process';
 import {activities, timeslots} from '../../../services';
 
 export const validate = (req: Request, res: Response, next: NextFunction) => {
@@ -16,15 +15,18 @@ export const get = async (req: Request, res: Response) => {
   return res.status(200).json(data);
 };
 
-export const getOne = async (req: Request, res: Response=, next: NextFunction) => {
+export const getOne = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const {id} = req.params;
   try {
     const data = await activities.readOne(Number(id));
     res.status(200).json(data);
-  } catch(e) {
-    next()
+  } catch (e) {
+    next();
   }
-
 };
 
 export const getTimeslots = async (req: Request, res: Response) => {
